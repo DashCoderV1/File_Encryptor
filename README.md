@@ -4,8 +4,8 @@
 - Username:Admin
 - Password:Admin
 - Working On
-    - Multiple Users and Permision
-    - Temporary View Of Files
+    - Multiple Users and Permission
+    - Temporary View Of Files (Needs Threads)
     - Save And Retrieve Directories
     - GUI if Possible
     - Adding An Encryption Algorithm
