@@ -25,8 +25,6 @@ def file_Write(file_name, data):
 
 
 def file_Temporary_Write(file_name, file):
-    import threading
-    from tempfile import NamedTemporaryFile
     pass
 
 def file_Delete(file_name):
@@ -88,7 +86,7 @@ dtb.get_table_info()
 while(True):
     print("Enter 1 for Hiding The File")
     print("Enter 2 for Retrieving The File")
-    print("Enter 3 for Retrieve in Temporary_File")
+    #print("Enter 3 for Retrieve in Temporary_File")
     print("Enter 4 for Exiting")
     choice = input("Enter Your Choice:")
 
@@ -129,6 +127,7 @@ while(True):
         else:
             print("Error Try Again")
 
+    #Work in Progress
     elif (choice == 3):
         os.system("cls")
         if (not dtb.print_data()):
