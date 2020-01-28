@@ -1,7 +1,8 @@
 import sqlite3
 from sqlite3 import Error
 import os
-
+import time
+import getpass
 
 class Data_Base:
     def __init__(self, File_Name):
@@ -163,6 +164,44 @@ def file_Delete(file_name):
         return False
 
 
+
+# Welcome Screen
+lis = ["1F", "3B", "0F"]
+print('\t\t\t\t\tLibrary Management')
+scroll = "\n\n\n\n\n\n\n\n\n\n\n\t\t\t"
+convey = ["Welcome To My Project ", "\t\t\t\tOn File Hiding", "\t\t\t\t\t\t\t\t\t Krishna"]
+for i in range(3):
+    os.system("color " + lis[i])
+    print(scroll[i:],end="\t")
+    for i in convey[:(i + 1)]:
+        print(i)
+    time.sleep(1.5)
+    os.system("cls")
+    print('\t\t\t\t\tFile Hiding')
+
+os.system("color 5f")
+for i in range(3):
+    os.system("cls")
+    print('\t\t\t\t\tFile Encryption and Hiding')
+    print("\n\n\n\n\n\t\t", "UserName",end="\t")
+    user = input()
+    print("\n\t\t",end="\t")
+    password = getpass.getpass()
+
+    if user == "Admin" and password == "Admin":
+        os.system("cls")
+        print('\t\t\t\t\tFile Encryption')
+        print("Welcome Admin")
+        break
+
+    else:
+        input("Wrong Username or Password Try Again")
+
+else:
+    input("Exceeded Login Attempt Try Again Later")
+    exit()
+
+
 os.system("color 1f")
 dtb = Data_Base("Data_Config")
 if (not dtb.table_exists("User_Files")):
@@ -178,6 +217,7 @@ while(True):
 
 
     if (choice == "1"):
+        os.system("cls")
         filename = input("Enter the Full Path Name Of File:")
         data = file_Read(filename)
         if (data == False):
@@ -195,6 +235,7 @@ while(True):
 
 
     elif (choice == "2"):
+        os.system("cls")
         if (not dtb.print_data()):
             print("No Files To Retreieve")
             continue
@@ -220,3 +261,4 @@ while(True):
         break
     else:
         print("Wrong Choice")
+    os.system("cls")
