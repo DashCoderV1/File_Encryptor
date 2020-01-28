@@ -8,4 +8,4 @@
     - Temporary View Of Files (Needs Threads)
     - Save And Retrieve Directories
     - GUI if Possible
-    - Adding An Encryption Algorithm
+    - Adding An Encryption Algorithm (Written In C Added To Python Using ctypes)
