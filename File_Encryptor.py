@@ -166,7 +166,7 @@ def file_Delete(file_name):
 
 
 # Welcome Screen
-lis = ["1F", "3B", "0F"]
+lis = ["17", "71", "47"]
 print('\t\t\t\t\tFile Encryption')
 scroll = "\n\n\n\n\n\n\n\n\n\n\n\t\t\t"
 convey = ["Welcome To My Project ",
@@ -191,7 +191,6 @@ for i in range(3):
 
     if user == "Admin" and password == "Admin":
         os.system("cls")
-        print('\t\t\t\t\tFile Encryption')
         print("Welcome Admin")
         break
 
