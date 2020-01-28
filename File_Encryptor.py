@@ -27,7 +27,7 @@ def file_Write(file_name, data):
 def file_Temporary_Write(file_name, file):
     import threading
     from tempfile import NamedTemporaryFile
-
+    pass
 
 def file_Delete(file_name):
     if os.path.isfile(file_name):
