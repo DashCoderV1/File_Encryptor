@@ -4,6 +4,7 @@ import os
 import time
 import getpass
 
+
 class Data_Base:
     def __init__(self, File_Name):
         try:
@@ -164,28 +165,28 @@ def file_Delete(file_name):
         return False
 
 
-
 # Welcome Screen
 lis = ["1F", "3B", "0F"]
-print('\t\t\t\t\tLibrary Management')
+print('\t\t\t\t\tFile Encryption')
 scroll = "\n\n\n\n\n\n\n\n\n\n\n\t\t\t"
-convey = ["Welcome To My Project ", "\t\t\t\tOn File Hiding", "\t\t\t\t\t\t\t\t\t Krishna"]
+convey = ["Welcome To My Project ",
+          "\t\t\t\t\tOn File Encryption", "\t\t\t\t\t\t Krishna"]
 for i in range(3):
     os.system("color " + lis[i])
-    print(scroll[i:],end="\t")
+    print(scroll[i:], end="\t")
     for i in convey[:(i + 1)]:
         print(i)
     time.sleep(1.5)
     os.system("cls")
-    print('\t\t\t\t\tFile Hiding')
+    print('\t\t\t\t\tFile Encryption')
 
 os.system("color 5f")
 for i in range(3):
     os.system("cls")
     print('\t\t\t\t\tFile Encryption and Hiding')
-    print("\n\n\n\n\n\t\t", "UserName",end="\t")
+    print("\n\n\n\n\n\t\t", "UserName", end="\t")
     user = input()
-    print("\n\t\t",end="\t")
+    print("\n\t\t", end="\t")
     password = getpass.getpass()
 
     if user == "Admin" and password == "Admin":
@@ -215,7 +216,6 @@ while(True):
     print("Enter 4 for Exiting")
     choice = input("Enter Your Choice:")
 
-
     if (choice == "1"):
         os.system("cls")
         filename = input("Enter the Full Path Name Of File:")
@@ -232,7 +232,6 @@ while(True):
         else:
             print("Error In Deletion")
             dtb.delete_in_table(f"file_name='{filename}'")
-
 
     elif (choice == "2"):
         os.system("cls")
@@ -254,11 +253,11 @@ while(True):
         else:
             print("Error Try Again")
 
-
     # elif (choice == 3):
 
     elif (choice == "4"):
         break
     else:
         print("Wrong Choice")
+    input("Enter")
     os.system("cls")
