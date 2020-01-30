@@ -1,44 +1,7 @@
-from Data_Base import Data_Base
+from Users import User
 import os
 import time
 import getpass
-
-
-def file_Read(file_name):
-    try:
-        with open(file_name, "rb") as f:
-            file = f.read()
-        return file
-    except FileNotFoundError:
-        print("File Not Found")
-        return False
-
-
-def file_Write(file_name, data):
-    try:
-        with open(file_name, "wb") as f:
-            f.write(data)
-        return True
-    except FileNotFoundError:
-        print("File Not Found")
-        return False
-
-
-def file_Temporary_Write(file_name, file):
-    pass
-
-def file_Delete(file_name):
-    if os.path.isfile(file_name):
-        try:
-            os.remove(file_name)
-            return True
-        except OSError:
-            print("Error Try Again Later")
-            return False
-    else:
-        print(f'Error: {file_name} not a valid filename')
-        return False
-
 
 # Welcome Screen
 lis = ["17", "71", "47"]
@@ -55,34 +18,53 @@ for i in range(3):
     os.system("cls")
     print('\t\t\t\t\tFile Encryption')
 
-os.system("color 5f")
-for i in range(3):
+user = None
+os.system("cls")
+print("Enter 1 to Login")
+print("Enter 2 to Register")
+x = input("Enter Choice:")
+if (x == "2"):
     os.system("cls")
-    print('\t\t\t\t\tFile Encryption and Hiding')
-    print("\n\n\n\n\n\t\t", "UserName", end="\t")
-    user = input()
-    print("\n\t\t", end="\t")
-    password = getpass.getpass()
+    # Register Screen
+    print("\n\n\n\n\n\n\t\t", "UserName", end="\t")
+    user_name = input()
+    print("\n\t\tPassword", end="\t")
+    password = input()
+    user = User(user_name, password)
+    if (user.check_user()):
+        print(user_name, " Already Registered")
+    else:
+        user.new_user()
+        print("Welcome ", user_name)
 
-    if user == "Admin" and password == "Admin":
+elif (x == "1"):
+    # Login Screen
+    os.system("color 5f")
+    user = None
+    for i in range(3):
         os.system("cls")
-        print("Welcome Admin")
-        break
+        print("\n\n\n\n\n\n\t\t", "UserName", end="\t")
+        user_name = input()
+        print("\n\t\t ", end="\t")
+        password = getpass.getpass()
+        user = User(user_name, password)
+        if (user.check_user()):
+            break
+        else:
+            input("Wrong Username or Password Try Again")
 
     else:
-        input("Wrong Username or Password Try Again")
+        input("Exceeded Login Attempt Try Again Later")
+        exit()
 
 else:
-    input("Exceeded Login Attempt Try Again Later")
+    print("Wrong Input Exiting")
+    time.sleep(0.75)
     exit()
+os.system("cls")
 
+print("Welcome ",user.User_name)
 
-os.system("color 1f")
-dtb = Data_Base("Data_Config")
-if (not dtb.table_exists("User_Files")):
-    dtb.create_table([["sno", "integer", "primary key", "AUTOINCREMENT"], [
-                     "file_name", "text"], ["File", "blob"]])
-dtb.get_table_info()
 while(True):
     print("Enter 1 for Hiding The File")
     print("Enter 2 for Retrieving The File")
@@ -93,63 +75,30 @@ while(True):
     if (choice == "1"):
         os.system("cls")
         filename = input("Enter the Full Path Name Of File:")
-        data = file_Read(filename)
-        if (data == False):
-            print("File Does not Exists")
-            continue
-        if (not dtb.insert_in_table(
-                [filename, data], dtb.table_info[1:])):
-            print("Error in Data Base Try Again")
-            continue
-        if (file_Delete(filename)):
+        if (user.Store_File(filename)):
             print("File Hidden")
         else:
-            print("Error In Deletion")
-            dtb.delete_in_table(f"file_name='{filename}'")
+            print("Error Occured")
+            continue
 
     elif (choice == "2"):
         os.system("cls")
-        if (not dtb.print_data()):
+        if (not user.print_data()):
             print("No Files To Retreieve")
             continue
         else:
-            print(dtb.print_data())
+            print(user.print_data())
         file_sno = input("Enter Sno Of File")
-
-        Data = dtb.get_table_data(f"sno={file_sno}")
-        if (not Data):
-            print("File Does Not Exists In Data Base")
-            continue
-        Sno, File_Name, File = Data
-        if (file_Write(File_Name, File)):
-            dtb.delete_in_table(f"sno={file_sno}")
-            print("File Retrieved")
+        if (user.Retrieve_File(file_sno)):
+            print("File Retreieved")
         else:
-            print("Error Try Again")
-
+            print("Error Occured")
     #Work in Progress
-    elif (choice == 3):
-        os.system("cls")
-        if (not dtb.print_data()):
-            print("No Files To Retreieve")
-            continue
-        else:
-            print(dtb.print_data())
-        file_sno = input("Enter Sno Of File")
-
-        Data = dtb.get_table_data(f"sno={file_sno}")
-        if (not Data):
-            print("File Does Not Exists In Data Base")
-            continue
-        Sno, File_Name, File = Data
-        if (file_Temporary_Write(File_Name, File)):
-            print("File Opened")
-        else:
-            print("Error Try Again")
+    # elif (choice == 3):
 
     elif (choice == "4"):
         break
     else:
         print("Wrong Choice")
-    input("Enter")
+    time.sleep(0.75)
     os.system("cls")
