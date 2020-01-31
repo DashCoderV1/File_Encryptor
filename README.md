@@ -7,7 +7,7 @@
 	- Retreive Files
 - Working On
     - Permisions Users
-    - Temporary View Of Files (Needs Threads)
+    - Temporary View Of Files And Directories(Needs Threadd or subprocess.Popen)
     - Save And Retrieve Directories
     - GUI Using PyQt
     - Adding An Encryption Algorithm (Written In C Added To Python Using ctypes)
