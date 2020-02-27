@@ -22,6 +22,7 @@ class Data_Base:
             cur.close()
             return False
         else:
+            self.get_table_info()
             cur.close()
             return True
 

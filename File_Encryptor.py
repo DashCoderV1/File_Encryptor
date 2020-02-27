@@ -69,7 +69,9 @@ while(True):
     print("Enter 1 for Hiding The File")
     print("Enter 2 for Retrieving The File")
     #print("Enter 3 for Retrieve in Temporary_File")
-    print("Enter 4 for Exiting")
+    print("Enter 4 for Hiding The Folder")
+    print("Enter 5 for Retrieving The Folder")
+    print("Enter 6 for Exiting")
     choice = input("Enter Your Choice:")
 
     if (choice == "1"):
@@ -97,6 +99,27 @@ while(True):
     # elif (choice == 3):
 
     elif (choice == "4"):
+        os.system("cls")
+        folder = input("Enter the Full Path Name Of Folder:")
+        if (user.Store_Zip(folder)):
+            print("Folder Hidden")
+        else:
+            print("Error Occured")
+            continue
+
+    elif (choice == "5"):
+        os.system("cls")
+        if (not user.print_data()):
+            print("No Folder To Retreieve")
+            continue
+        else:
+            print(user.print_data())
+        file_sno = input("Enter Sno Of Folder")
+        if (user.Retrieve_Zip(file_sno)):
+            print("Folder Retreieved")
+        else:
+            print("Error Occured")
+    elif (choice == "6"):
         break
     else:
         print("Wrong Choice")
