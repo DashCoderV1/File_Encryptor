@@ -2,7 +2,7 @@
 - Encrypts A File Using SQLlite
 - Main File:File_Encryptor.py
 - Users Registration And Login
-- Store And Restore Directories
+- Store And Restore Directories 
 - Working On
     - Permission
     - Temporary View Of Files (Needs Threads)
