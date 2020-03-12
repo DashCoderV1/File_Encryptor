@@ -49,7 +49,7 @@ class User(Data_Base):
         self.Password = (password if password else self.Password)
 
     def get_table_name(self,var):
-        return (self.User_name+self.tables[var])
+        return (self.User_name+self.Password+self.tables[var])
 
     def check_user(self):
         for i in range(len(self.tables)):
